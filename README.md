@@ -1,50 +1,117 @@
-# Welcome to your Expo app 👋
+# 🌱 GREEN SAVER
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicación móvil desarrollada con **Expo + React Native** orientada al cálculo, análisis y visualización de sistemas de energía solar residencial, con un enfoque social y ambiental que promueve el uso de energías renovables.
 
-## Get started
+---
 
-1. Install dependencies
+## 📌 Descripción del proyecto
 
-   ```bash
-   npm install
-   ```
+**GREEN SAVER** es una aplicación móvil que permite a los usuarios estimar la viabilidad de instalar un sistema de energía solar en su hogar a partir del consumo energético mensual.  
+La aplicación busca generar conciencia ambiental, facilitar la toma de decisiones energéticas y apoyar la transición hacia energías limpias.
 
-2. Start the app
+El proyecto fue desarrollado como parte de un proceso académico, integrando conceptos de **arquitectura frontend**, **experiencia de usuario (UX)**, **control de accesos**, **diseño visual** y **versionado de código con GitHub**.
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## 🎯 Propósito social y ambiental
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- Fomentar el uso de energías renovables.
+- Reducir el impacto ambiental del consumo energético tradicional.
+- Facilitar el acceso a información técnica de forma clara y comprensible.
+- Apoyar la toma de decisiones responsables en hogares y comunidades.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 🧩 Funcionalidades principales
 
-When you're ready, run:
+La aplicación implementa, entre otras, las siguientes funcionalidades:
 
-```bash
-npm run reset-project
-```
+- Inicio de sesión y registro de usuarios.
+- Control de acceso por roles (usuario / administrador).
+- Registro de consumo energético.
+- Cálculo estimado de sistema solar (paneles, ahorro, viabilidad).
+- Visualización de resultados y recomendaciones.
+- Historial de cálculos realizados.
+- Información educativa sobre energía solar.
+- Panel administrativo con gestión y estadísticas.
+- Navegación mediante menú inferior (Tabs).
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## 👥 Roles del sistema
 
-To learn more about developing your project with Expo, look at the following resources:
+### 👤 Usuario
+- Accede al dashboard principal.
+- Registra consumo energético.
+- Consulta cálculos y resultados.
+- Visualiza información educativa.
+- Gestiona su perfil.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 🔐 Administrador
+- Accede a un panel administrativo independiente.
+- Gestiona usuarios del sistema.
+- Visualiza estadísticas generales del uso de la aplicación.
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
+## 🎨 Diseño y experiencia de usuario (UX)
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+La aplicación utiliza una **paleta de colores institucional** alineada con la temática ambiental:
+
+- **Verde institucional (#00A859)**: sostenibilidad, energía limpia.
+- **Rojo (#ED3237)**: alertas y estados críticos.
+- **Colores semánticos** para estados (success, warning, error, info).
+- Fondos claros y superficies limpias para reducir la fatiga visual.
+
+La navegación del usuario se implementa mediante un **menú inferior (Bottom Tabs)**, siguiendo principios de usabilidad móvil y buenas prácticas de diseño.
+
+---
+
+## 🧭 Navegación y estructura
+
+La navegación se gestiona con **Expo Router**, utilizando el sistema de rutas basado en archivos:
+
+app/
+├── (auth)/        → Autenticación
+├── (user)/(tabs)/ → Usuario con menú inferior
+├── (admin)/       → Administrador
+Este enfoque permite una organización clara del proyecto y un control efectivo de accesos.
+
+---
+
+## ⚙️ Tecnologías utilizadas
+
+- **Expo**
+- **React Native**
+- **Expo Router**
+- **JavaScript**
+- **Git & GitHub**
+- **Material Design (principios de interfaz móvil)**
+
+---
+
+## 📂 Estructura del proyecto
+green-saver/
+├── app/
+│   ├── (auth)/
+│   ├── (user)/(tabs)/
+│   └── (admin)/
+├── src/
+│   └── theme/
+│       └── colors.js
+├── assets/
+├── components/
+├── package.json
+└── README.md
+
+---
+
+## 🔄 Control de versiones
+
+El proyecto se encuentra versionado en **GitHub**, lo que permite:
+
+- Control de cambios mediante commits.
+- Respaldo del código fuente.
+- Trabajo colaborativo entre integrantes.
+- Evidencia del desarrollo progresivo del proyecto.
+
