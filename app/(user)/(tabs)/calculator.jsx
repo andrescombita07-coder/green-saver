@@ -1,4 +1,5 @@
 import { useAuth } from "@/src/context/AuthContext";
+import { createRemoteCalculation } from "@/src/services/backend";
 import { appendStoredCalculation } from "@/src/services/storage";
 import { Colors } from "@/src/theme/colors";
 import { useRouter } from "expo-router";
@@ -54,6 +55,19 @@ export default function Calculator() {
       requestedBy: user?.email || "cliente@correo.com",
       clientName: user?.name || "Cliente",
     };
+
+    try {
+      await createRemoteCalculation({
+        email: user?.email || "cliente@correo.com",
+        consumption: parsedConsumption,
+        estimatedPanels,
+        coverage,
+        estimatedSavings,
+        recommendation,
+      });
+    } catch {
+      // Si backend no está disponible, guardamos localmente
+    }
 
     await appendStoredCalculation(result);
     setCalculated(result);

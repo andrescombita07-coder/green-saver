@@ -1,3 +1,4 @@
+import { getRemoteCalculations } from "@/src/services/backend";
 import { getStoredCalculations } from "@/src/services/storage";
 import { Colors } from "@/src/theme/colors";
 import { useRouter } from "expo-router";
@@ -10,6 +11,17 @@ export default function History() {
 
   useEffect(() => {
     const loadHistory = async () => {
+      try {
+        const remoteHistory = await getRemoteCalculations();
+
+        if (remoteHistory.length > 0) {
+          setHistory(remoteHistory);
+          return;
+        }
+      } catch {
+        // Si falla backend, usamos almacenamiento local.
+      }
+
       const storedHistory = await getStoredCalculations();
       setHistory(storedHistory);
     };
@@ -34,10 +46,10 @@ export default function History() {
         history.map((item) => (
           <View key={item.id} style={styles.card}>
             <Text style={styles.cardTitle}>{item.date}</Text>
-            <Text style={styles.cardText}>Consumo: {item.consumption} kWh</Text>
-            <Text style={styles.cardText}>Paneles: {item.estimatedPanels}</Text>
-            <Text style={styles.cardText}>Cobertura: {item.coverage}%</Text>
-            <Text style={styles.cardText}>{item.recommendation}</Text>
+            <Text style={styles.cardText}>Consumo: {item.consumption ?? "N/D"} kWh</Text>
+            <Text style={styles.cardText}>Paneles: {item.estimatedPanels ?? "N/D"}</Text>
+            <Text style={styles.cardText}>Cobertura: {item.coverage ?? "N/D"}{item.coverage !== null && item.coverage !== undefined ? "%" : ""}</Text>
+            <Text style={styles.cardText}>{item.recommendation ?? "Sin recomendación disponible"}</Text>
 
             <Pressable
               style={styles.detailButton}

@@ -1,3 +1,4 @@
+import { loginRemoteUser, registerRemoteUser } from "@/src/services/backend";
 import {
     clearStoredCurrentUser,
     getStoredCurrentUser,
@@ -58,6 +59,24 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
+    // Backend (si existe endpoint de auth)
+    try {
+      const remoteSession = await loginRemoteUser({ email, password });
+
+      const remoteUser = {
+        email: remoteSession?.email || email,
+        role: remoteSession?.role || "user",
+        name: remoteSession?.name || getDisplayName(email),
+        phone: remoteSession?.phone || "",
+      };
+
+      await setStoredCurrentUser(remoteUser);
+      setUser(remoteUser);
+      return;
+    } catch {
+      // Si el backend no tiene auth aún o está caído, usamos fallback local.
+    }
+
     // Usuarios registrados
     const users = await getStoredUsers();
 
@@ -96,6 +115,17 @@ export const AuthProvider = ({ children }) => {
     };
 
     await setStoredUsers([...users, newUser]);
+
+    // Sincronización no bloqueante con backend actual.
+    try {
+      await registerRemoteUser({
+        name: newUser.name,
+        city: "N/A",
+        monthlyConsumption: 0,
+      });
+    } catch {
+      // El registro local sigue funcionando aunque backend no esté disponible.
+    }
 
     const sessionUser = {
       ...newUser,
