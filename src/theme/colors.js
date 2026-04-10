@@ -20,4 +20,3 @@ export const Colors = {
   dark: "#111F1F",        // Texto principal
   gray: "#6C757D",        // Texto secundario / iconos
 };
-``

@@ -1,12 +1,15 @@
+import { useAuth } from "@/src/context/AuthContext";
 import { Redirect } from "expo-router";
 
 export default function Index() {
-  const user = null; // luego vendrá del backend
+  const { user, loading } = useAuth();
 
-  if (!user) {
-    return <Redirect href="/login" />;
-  }
+  if (loading) return null;
 
-  return <Redirect href="/dashboard" />;
+  if (!user) return <Redirect href="/login" />;
+
+  if (user.role === "admin")
+    return <Redirect href="/(admin)/dashboard" />;
+
+  return <Redirect href="/(user)/(tabs)" />;
 }
-``
